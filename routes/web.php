@@ -39,11 +39,7 @@ Route::post('/questions/store', [QuestionController::class, 'store'])->name('que
 Route::get('/survey/{id}', [SurveyController::class, 'show'])->name('survey.show');
 Route::post('/survey/{id}/submit', [SurveyController::class, 'submit'])->name('survey.submit');
 
-Route::get('/surveys/{survey}/dashboard', [ControllersSurveyDashboardController::class, 'show'])->name('survey.dashboard');
-Route::get('/surveys/{survey}/export/pdf', [ControllersSurveyDashboardController::class, 'exportPdf'])->name('survey.export.pdf');
-Route::get('/surveys/{survey}/export-excel', [ControllersSurveyDashboardController::class, 'exportExcel'])->name('survey.export.excel');
-Route::get('/surveys/{survey}/export-csv', [ControllersSurveyDashboardController::class, 'exportCsv'])->name('survey.export.csv');
-Route::get('/surveys/{survey}/export/summary-excel', [ControllersSurveyDashboardController::class, 'exportSummaryExcel']);
+use App\Models\Quiz;
 
 Route::get('/quizzes/{quiz}/dashboard', [ControllersSurveyDashboardController::class, 'show'])->name('survey.dashboard');
 Route::get('/quizzes/{quiz}/export/pdf', [ControllersSurveyDashboardController::class, 'exportPdf'])->name('survey.export.pdf');
