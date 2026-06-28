@@ -1,16 +1,9 @@
 <table style="border-collapse: collapse; font-family: Calibri, Arial, sans-serif;">
-    <colgroup>
-        <col style="width: 220px;">
-        <col style="width: 120px;">
-        <col style="width: 100px;">
-    </colgroup>
-
     <tr>
         <th colspan="3" style="font-weight: bold; font-size: 16px; text-align: left; padding: 10px; border: 1px solid #999;">
             {{ $survey->title }}
         </th>
     </tr>
-    <tr><td colspan="3" style="height: 10px; border: none;"></td></tr>
 
     @foreach($stats as $stat)
         <tr>
@@ -74,6 +67,8 @@
             @endforeach
         @endif
 
-        <tr><td colspan="3" style="height: 15px; border: none;"></td></tr>
+        <tr>
+            <td colspan="3" style="border: none;">&nbsp;</td>
+        </tr>
     @endforeach
 </table>

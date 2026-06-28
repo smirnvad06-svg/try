@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Survey;
 use App\Models\Question;
 use App\Http\Controllers\SurveyController;
-use App\Http\Controllers\AnalyticsController;
 use App\Http\Controllers\SurveyDashboardController as ControllersSurveyDashboardController;
 
 /*
@@ -24,7 +23,7 @@ use App\Http\Controllers\SurveyDashboardController as ControllersSurveyDashboard
 
 Route::get('/', [QuizController::class, 'index'])->name('index');
 
-Auth::routes();
+Auth::routes(); 
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
@@ -46,14 +45,17 @@ Route::get('/surveys/{survey}/export-excel', [ControllersSurveyDashboardControll
 Route::get('/surveys/{survey}/export-csv', [ControllersSurveyDashboardController::class, 'exportCsv'])->name('survey.export.csv');
 Route::get('/surveys/{survey}/export/summary-excel', [ControllersSurveyDashboardController::class, 'exportSummaryExcel']);
 
+Route::get('/quizzes/{quiz}/dashboard', [ControllersSurveyDashboardController::class, 'show'])->name('survey.dashboard');
+Route::get('/quizzes/{quiz}/export/pdf', [ControllersSurveyDashboardController::class, 'exportPdf'])->name('survey.export.pdf');
+Route::get('/quizzes/{quiz}/export/csv', [ControllersSurveyDashboardController::class, 'exportCsv'])->name('survey.export.csv');
+Route::get('/quizzes/{quiz}/export/summary-excel', [ControllersSurveyDashboardController::class, 'exportExcel'])
+    ->name('survey.export.excel');
+
+// Ссылка №2: Сырые данные
+Route::get('/quizzes/{quiz}/export/excel', [ControllersSurveyDashboardController::class, 'exportExcelTable'])
+    ->name('survey.export.excel_table');
 Route::post('/survey/{id}/submit', [SurveyController::class, 'submit'])->name('survey.submit');
 
-Route::get('/quiz/{id}/stats', [AnalyticsController::class, 'stats'])->name('quiz.stats');
-
-Route::get('/quiz/{id}', [QuestionController::class, 'show'])->name('quiz.show');
-
-// Обработка отправки ответов
-Route::post('/quiz/{id}/submit', [QuestionController::class, 'submitAnswer'])->name('quiz.submit');
 Route::get('/seed-survey', function () {
     // 1. Создаем сам опрос
     $survey = Survey::create([
