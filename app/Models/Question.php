@@ -18,9 +18,6 @@ class Question extends Model
         return $this->hasMany(Response::class);
     }
 
-    protected $casts = [
-    'options' => 'array',
-];
+    protected $fillable = ['text', 'quiz_id', 'type', 'position'];
 
-    protected $fillable = ['text', 'quiz_id', 'type', 'position', 'options'];
 }
